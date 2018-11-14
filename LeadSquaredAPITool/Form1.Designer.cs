@@ -93,6 +93,7 @@
             // 
             // btnGetAccess
             // 
+            this.btnGetAccess.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnGetAccess.Location = new System.Drawing.Point(65, 149);
             this.btnGetAccess.Name = "btnGetAccess";
             this.btnGetAccess.Size = new System.Drawing.Size(75, 23);

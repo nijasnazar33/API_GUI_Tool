@@ -48,9 +48,11 @@ namespace LeadSquaredAPITool
             queryString.Add("ipAddress", ipAddress);
             queryString.Add("reason", "report_changes");
             string full_url = baseUrl + ToQueryString(queryString);
+            Cursor.Current = Cursors.WaitCursor;
             WebRequest request = HttpWebRequest.Create(full_url);
             WebResponse response = request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
+            Cursor.Current = Cursors.Default;
             tbURL.Text = full_url;
             tbResponse.Text = reader.ReadToEnd();
         }
