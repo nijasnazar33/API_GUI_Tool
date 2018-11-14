@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LeadSquaredAPITool
 {
@@ -13,13 +14,13 @@ namespace LeadSquaredAPITool
     class ReadFile
     {
 
-        static string filename = @"D:\LeadSquaredReports\_Definitions\_Processes\ReportSetSessionProcess.lgx";
         static NameValueCollection short_code = new NameValueCollection();
         static NameValueCollection rdUserName = new NameValueCollection();
 
 
-        static public NameValueCollection[] ReadReportSetSessionFile()
+        static public NameValueCollection[] ReadReportSetSessionFile(string reportLoction)
         {
+            string filename = reportLoction+"\\ReportSetSessionProcess.lgx";
             bool in_tenant_div = false;
             string tenant_name = "";
             NameValueCollection[] func_out = new NameValueCollection[2];

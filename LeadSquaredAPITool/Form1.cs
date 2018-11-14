@@ -16,20 +16,34 @@ namespace LeadSquaredAPITool
     public partial class Form1 : Form
     {
         private static NameValueCollection[] nmTenantData;
-        private static string accessKey = "u$r77b4d1498ddd01a19b201291254a1365";
-        private static string secretKey = "Mazhuvancherry@1";
-        private static string ipAddress = "14.98.2.134";
+        //private static string accessKey = "u$r77b4d1498ddd01a19b201291254a1365";
+        //private static string secretKey = "Mazhuvancherry@1";
+        //private static string ipAddress = "14.98.2.134";
         private static string baseUrl = "https://devops-api.leadsquared.com:9002/api/tasks/async/MySQLAccess/GetTenantAccess";
         private static NameValueCollection queryString;
 
         public Form1()
         {
             InitializeComponent();
-            nmTenantData = ReadFile.ReadReportSetSessionFile();
             queryString =  new NameValueCollection();
-            for (int i=0; i<nmTenantData[0].Count; i++)
+            tbReason.Text = "Report changes";
+            if (File.Exists("config_file.txt"))
             {
-                cbTenantList.Items.Add(nmTenantData[0].GetKey(i).ToString());
+                StreamReader reader = new StreamReader("config_file.txt");
+                using (reader)
+                {
+                    tbAccessKey.Text = reader.ReadLine();
+                    tbSecretKey.Text = reader.ReadLine();
+                    tbIPAddress.Text = reader.ReadLine();
+                    tbReportLocation.Text = reader.ReadLine();
+
+                }
+
+                nmTenantData = ReadFile.ReadReportSetSessionFile(tbReportLocation.Text);
+                for (int i = 0; i < nmTenantData[0].Count; i++)
+                {
+                    cbTenantList.Items.Add(nmTenantData[0].GetKey(i).ToString());
+                }
             }
 
         }
@@ -42,11 +56,11 @@ namespace LeadSquaredAPITool
 
         private void btnGetAccess_Click(object sender, EventArgs e)
         {
-            queryString.Add("accessKey", accessKey);
-            queryString.Add("secretKey", secretKey);
+            queryString.Add("accessKey", tbAccessKey.Text);
+            queryString.Add("secretKey", tbSecretKey.Text);
             queryString.Add("shortCodes", tbShortCode.Text);
-            queryString.Add("ipAddress", ipAddress);
-            queryString.Add("reason", "report_changes");
+            queryString.Add("ipAddress", tbIPAddress.Text);
+            queryString.Add("reason", tbReason.Text);
             string full_url = baseUrl + ToQueryString(queryString);
             Cursor.Current = Cursors.WaitCursor;
             WebRequest request = HttpWebRequest.Create(full_url);
@@ -65,6 +79,22 @@ namespace LeadSquaredAPITool
                 .ToArray();
 
             return "?" + string.Join("&", array);
+        }
+
+        private void btnSaveInfo_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            StreamWriter writer = new StreamWriter("config_file.txt");
+            using (writer)
+            {
+                writer.WriteLine(tbAccessKey.Text);
+                writer.WriteLine(tbSecretKey.Text);
+                writer.WriteLine(tbIPAddress.Text);
+                writer.WriteLine(tbReportLocation.Text);
+            }
+            Cursor.Current = Cursors.Default;
+            NotifyForm frm = new NotifyForm("Saved successfully", "Message");
+            frm.Show();
         }
     }
 }
