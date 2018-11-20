@@ -21,12 +21,17 @@ namespace LeadSquaredAPITool
         //private static string ipAddress = "14.98.2.134";
         private static string baseUrl = "https://devops-api.leadsquared.com:9002/api/tasks/async/MySQLAccess/GetTenantAccess";
         private static NameValueCollection queryString;
+        ToolTip toolTip1 = new ToolTip();
+        //toolTip1.SetToolTip(this., "My checkBox1");
 
         public Form1()
         {
             InitializeComponent();
             queryString =  new NameValueCollection();
             tbReason.Text = "Report changes";
+            //Fetching current public ipV4
+            tbIPAddress.Text = APIAccess.GetPublicIP();
+
             if (File.Exists("config_file.txt"))
             {
                 StreamReader reader = new StreamReader("config_file.txt");
@@ -34,12 +39,11 @@ namespace LeadSquaredAPITool
                 {
                     tbAccessKey.Text = reader.ReadLine();
                     tbSecretKey.Text = reader.ReadLine();
-                    tbIPAddress.Text = reader.ReadLine();
                     tbReportLocation.Text = reader.ReadLine();
 
                 }
 
-                nmTenantData = ReadFile.ReadReportSetSessionFile(tbReportLocation.Text);
+                nmTenantData = APIAccess.ReadReportSetSessionFile(tbReportLocation.Text);
                 for (int i = 0; i < nmTenantData[0].Count; i++)
                 {
                     cbTenantList.Items.Add(nmTenantData[0].GetKey(i).ToString());
@@ -56,12 +60,15 @@ namespace LeadSquaredAPITool
 
         private void btnGetAccess_Click(object sender, EventArgs e)
         {
+            queryString.Clear();
             queryString.Add("accessKey", tbAccessKey.Text);
             queryString.Add("secretKey", tbSecretKey.Text);
             queryString.Add("shortCodes", tbShortCode.Text);
             queryString.Add("ipAddress", tbIPAddress.Text);
             queryString.Add("reason", tbReason.Text);
             string full_url = baseUrl + ToQueryString(queryString);
+//            NotifyForm frm = new NotifyForm(full_url, "Debug");
+//            frm.Show();
             Cursor.Current = Cursors.WaitCursor;
             WebRequest request = HttpWebRequest.Create(full_url);
             WebResponse response = request.GetResponse();
@@ -89,12 +96,23 @@ namespace LeadSquaredAPITool
             {
                 writer.WriteLine(tbAccessKey.Text);
                 writer.WriteLine(tbSecretKey.Text);
-                writer.WriteLine(tbIPAddress.Text);
+                //writer.WriteLine(tbIPAddress.Text);
                 writer.WriteLine(tbReportLocation.Text);
             }
             Cursor.Current = Cursors.Default;
             NotifyForm frm = new NotifyForm("Saved successfully", "Message");
             frm.Show();
+        }
+
+
+        private void btnRefreshTenants_Click(object sender, EventArgs e)
+        {
+            nmTenantData = APIAccess.ReadReportSetSessionFile(tbReportLocation.Text);
+            cbTenantList.Items.Clear();
+            for (int i = 0; i < nmTenantData[0].Count; i++)
+            {
+                cbTenantList.Items.Add(nmTenantData[0].GetKey(i).ToString());
+            }
         }
     }
 }

@@ -40,24 +40,25 @@
             this.tbResponse = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTenantAccess = new System.Windows.Forms.TabPage();
-            this.tabConfig = new System.Windows.Forms.TabPage();
-            this.lblAuthToken = new System.Windows.Forms.Label();
-            this.tabCustomField = new System.Windows.Forms.TabPage();
-            this.lblReason = new System.Windows.Forms.Label();
             this.tbReason = new System.Windows.Forms.TextBox();
-            this.lblAccessKey = new System.Windows.Forms.Label();
-            this.tbAccessKey = new System.Windows.Forms.TextBox();
-            this.tbSecretKey = new System.Windows.Forms.TextBox();
-            this.lblSecretKey = new System.Windows.Forms.Label();
-            this.lblIPAddress = new System.Windows.Forms.Label();
-            this.tbIPAddress = new System.Windows.Forms.TextBox();
-            this.lblReportLocation = new System.Windows.Forms.Label();
-            this.tbReportLocation = new System.Windows.Forms.TextBox();
+            this.lblReason = new System.Windows.Forms.Label();
+            this.tabCustomField = new System.Windows.Forms.TabPage();
+            this.lblAuthToken = new System.Windows.Forms.Label();
+            this.tabConfig = new System.Windows.Forms.TabPage();
             this.btnSaveInfo = new System.Windows.Forms.Button();
+            this.tbReportLocation = new System.Windows.Forms.TextBox();
+            this.lblReportLocation = new System.Windows.Forms.Label();
+            this.tbIPAddress = new System.Windows.Forms.TextBox();
+            this.lblIPAddress = new System.Windows.Forms.Label();
+            this.lblSecretKey = new System.Windows.Forms.Label();
+            this.tbSecretKey = new System.Windows.Forms.TextBox();
+            this.tbAccessKey = new System.Windows.Forms.TextBox();
+            this.lblAccessKey = new System.Windows.Forms.Label();
+            this.btnRefreshTenants = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabTenantAccess.SuspendLayout();
-            this.tabConfig.SuspendLayout();
             this.tabCustomField.SuspendLayout();
+            this.tabConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbShortCode
@@ -86,7 +87,7 @@
             // lblTenantName
             // 
             this.lblTenantName.AutoSize = true;
-            this.lblTenantName.Location = new System.Drawing.Point(40, 15);
+            this.lblTenantName.Location = new System.Drawing.Point(43, 15);
             this.lblTenantName.Name = "lblTenantName";
             this.lblTenantName.Size = new System.Drawing.Size(41, 13);
             this.lblTenantName.TabIndex = 4;
@@ -176,6 +177,42 @@
             this.tabTenantAccess.Text = "Tenant Access";
             this.tabTenantAccess.UseVisualStyleBackColor = true;
             // 
+            // tbReason
+            // 
+            this.tbReason.Location = new System.Drawing.Point(83, 48);
+            this.tbReason.Name = "tbReason";
+            this.tbReason.Size = new System.Drawing.Size(152, 20);
+            this.tbReason.TabIndex = 14;
+            // 
+            // lblReason
+            // 
+            this.lblReason.AutoSize = true;
+            this.lblReason.Location = new System.Drawing.Point(18, 55);
+            this.lblReason.Name = "lblReason";
+            this.lblReason.Size = new System.Drawing.Size(44, 13);
+            this.lblReason.TabIndex = 13;
+            this.lblReason.Text = "Reason";
+            // 
+            // tabCustomField
+            // 
+            this.tabCustomField.Controls.Add(this.tbAuthToken);
+            this.tabCustomField.Controls.Add(this.lblAuthToken);
+            this.tabCustomField.Location = new System.Drawing.Point(4, 22);
+            this.tabCustomField.Name = "tabCustomField";
+            this.tabCustomField.Size = new System.Drawing.Size(727, 245);
+            this.tabCustomField.TabIndex = 2;
+            this.tabCustomField.Text = "Custom Fields";
+            this.tabCustomField.UseVisualStyleBackColor = true;
+            // 
+            // lblAuthToken
+            // 
+            this.lblAuthToken.AutoSize = true;
+            this.lblAuthToken.Location = new System.Drawing.Point(27, 33);
+            this.lblAuthToken.Name = "lblAuthToken";
+            this.lblAuthToken.Size = new System.Drawing.Size(63, 13);
+            this.lblAuthToken.TabIndex = 3;
+            this.lblAuthToken.Text = "Auth Token";
+            // 
             // tabConfig
             // 
             this.tabConfig.Controls.Add(this.btnSaveInfo);
@@ -195,64 +232,47 @@
             this.tabConfig.Text = "Configuration";
             this.tabConfig.UseVisualStyleBackColor = true;
             // 
-            // lblAuthToken
+            // btnSaveInfo
             // 
-            this.lblAuthToken.AutoSize = true;
-            this.lblAuthToken.Location = new System.Drawing.Point(27, 33);
-            this.lblAuthToken.Name = "lblAuthToken";
-            this.lblAuthToken.Size = new System.Drawing.Size(63, 13);
-            this.lblAuthToken.TabIndex = 3;
-            this.lblAuthToken.Text = "Auth Token";
+            this.btnSaveInfo.Location = new System.Drawing.Point(158, 111);
+            this.btnSaveInfo.Name = "btnSaveInfo";
+            this.btnSaveInfo.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveInfo.TabIndex = 8;
+            this.btnSaveInfo.Text = "Save";
+            this.btnSaveInfo.UseVisualStyleBackColor = true;
+            this.btnSaveInfo.Click += new System.EventHandler(this.btnSaveInfo_Click);
             // 
-            // tabCustomField
+            // tbReportLocation
             // 
-            this.tabCustomField.Controls.Add(this.tbAuthToken);
-            this.tabCustomField.Controls.Add(this.lblAuthToken);
-            this.tabCustomField.Location = new System.Drawing.Point(4, 22);
-            this.tabCustomField.Name = "tabCustomField";
-            this.tabCustomField.Size = new System.Drawing.Size(727, 245);
-            this.tabCustomField.TabIndex = 2;
-            this.tabCustomField.Text = "Custom Fields";
-            this.tabCustomField.UseVisualStyleBackColor = true;
+            this.tbReportLocation.Location = new System.Drawing.Point(158, 79);
+            this.tbReportLocation.Name = "tbReportLocation";
+            this.tbReportLocation.Size = new System.Drawing.Size(305, 20);
+            this.tbReportLocation.TabIndex = 7;
             // 
-            // lblReason
+            // lblReportLocation
             // 
-            this.lblReason.AutoSize = true;
-            this.lblReason.Location = new System.Drawing.Point(18, 55);
-            this.lblReason.Name = "lblReason";
-            this.lblReason.Size = new System.Drawing.Size(44, 13);
-            this.lblReason.TabIndex = 13;
-            this.lblReason.Text = "Reason";
+            this.lblReportLocation.AutoSize = true;
+            this.lblReportLocation.Location = new System.Drawing.Point(30, 86);
+            this.lblReportLocation.Name = "lblReportLocation";
+            this.lblReportLocation.Size = new System.Drawing.Size(124, 13);
+            this.lblReportLocation.TabIndex = 6;
+            this.lblReportLocation.Text = "Report Process Location";
             // 
-            // tbReason
+            // tbIPAddress
             // 
-            this.tbReason.Location = new System.Drawing.Point(83, 48);
-            this.tbReason.Name = "tbReason";
-            this.tbReason.Size = new System.Drawing.Size(152, 20);
-            this.tbReason.TabIndex = 14;
+            this.tbIPAddress.Location = new System.Drawing.Point(158, 184);
+            this.tbIPAddress.Name = "tbIPAddress";
+            this.tbIPAddress.Size = new System.Drawing.Size(305, 20);
+            this.tbIPAddress.TabIndex = 5;
             // 
-            // lblAccessKey
+            // lblIPAddress
             // 
-            this.lblAccessKey.AutoSize = true;
-            this.lblAccessKey.Location = new System.Drawing.Point(30, 33);
-            this.lblAccessKey.Name = "lblAccessKey";
-            this.lblAccessKey.Size = new System.Drawing.Size(63, 13);
-            this.lblAccessKey.TabIndex = 0;
-            this.lblAccessKey.Text = "Access Key";
-            // 
-            // tbAccessKey
-            // 
-            this.tbAccessKey.Location = new System.Drawing.Point(158, 26);
-            this.tbAccessKey.Name = "tbAccessKey";
-            this.tbAccessKey.Size = new System.Drawing.Size(305, 20);
-            this.tbAccessKey.TabIndex = 1;
-            // 
-            // tbSecretKey
-            // 
-            this.tbSecretKey.Location = new System.Drawing.Point(158, 52);
-            this.tbSecretKey.Name = "tbSecretKey";
-            this.tbSecretKey.Size = new System.Drawing.Size(305, 20);
-            this.tbSecretKey.TabIndex = 2;
+            this.lblIPAddress.AutoSize = true;
+            this.lblIPAddress.Location = new System.Drawing.Point(30, 191);
+            this.lblIPAddress.Name = "lblIPAddress";
+            this.lblIPAddress.Size = new System.Drawing.Size(58, 13);
+            this.lblIPAddress.TabIndex = 4;
+            this.lblIPAddress.Text = "IP Address";
             // 
             // lblSecretKey
             // 
@@ -263,53 +283,47 @@
             this.lblSecretKey.TabIndex = 3;
             this.lblSecretKey.Text = "Secret Key";
             // 
-            // lblIPAddress
+            // tbSecretKey
             // 
-            this.lblIPAddress.AutoSize = true;
-            this.lblIPAddress.Location = new System.Drawing.Point(30, 85);
-            this.lblIPAddress.Name = "lblIPAddress";
-            this.lblIPAddress.Size = new System.Drawing.Size(58, 13);
-            this.lblIPAddress.TabIndex = 4;
-            this.lblIPAddress.Text = "IP Address";
+            this.tbSecretKey.Location = new System.Drawing.Point(158, 52);
+            this.tbSecretKey.Name = "tbSecretKey";
+            this.tbSecretKey.Size = new System.Drawing.Size(305, 20);
+            this.tbSecretKey.TabIndex = 2;
             // 
-            // tbIPAddress
+            // tbAccessKey
             // 
-            this.tbIPAddress.Location = new System.Drawing.Point(158, 78);
-            this.tbIPAddress.Name = "tbIPAddress";
-            this.tbIPAddress.Size = new System.Drawing.Size(305, 20);
-            this.tbIPAddress.TabIndex = 5;
+            this.tbAccessKey.Location = new System.Drawing.Point(158, 26);
+            this.tbAccessKey.Name = "tbAccessKey";
+            this.tbAccessKey.Size = new System.Drawing.Size(305, 20);
+            this.tbAccessKey.TabIndex = 1;
             // 
-            // lblReportLocation
+            // lblAccessKey
             // 
-            this.lblReportLocation.AutoSize = true;
-            this.lblReportLocation.Location = new System.Drawing.Point(30, 112);
-            this.lblReportLocation.Name = "lblReportLocation";
-            this.lblReportLocation.Size = new System.Drawing.Size(124, 13);
-            this.lblReportLocation.TabIndex = 6;
-            this.lblReportLocation.Text = "Report Process Location";
+            this.lblAccessKey.AutoSize = true;
+            this.lblAccessKey.Location = new System.Drawing.Point(30, 33);
+            this.lblAccessKey.Name = "lblAccessKey";
+            this.lblAccessKey.Size = new System.Drawing.Size(63, 13);
+            this.lblAccessKey.TabIndex = 0;
+            this.lblAccessKey.Text = "Access Key";
             // 
-            // tbReportLocation
+            // btnRefreshTenants
             // 
-            this.tbReportLocation.Location = new System.Drawing.Point(158, 105);
-            this.tbReportLocation.Name = "tbReportLocation";
-            this.tbReportLocation.Size = new System.Drawing.Size(305, 20);
-            this.tbReportLocation.TabIndex = 7;
-            // 
-            // btnSaveInfo
-            // 
-            this.btnSaveInfo.Location = new System.Drawing.Point(158, 150);
-            this.btnSaveInfo.Name = "btnSaveInfo";
-            this.btnSaveInfo.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveInfo.TabIndex = 8;
-            this.btnSaveInfo.Text = "Save";
-            this.btnSaveInfo.UseVisualStyleBackColor = true;
-            this.btnSaveInfo.Click += new System.EventHandler(this.btnSaveInfo_Click);
+            this.btnRefreshTenants.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnRefreshTenants.Image = global::LeadSquaredAPITool.Properties.Resources.iconfinder_sync_126579_16x16;
+            this.btnRefreshTenants.Location = new System.Drawing.Point(221, 10);
+            this.btnRefreshTenants.Name = "btnRefreshTenants";
+            this.btnRefreshTenants.Size = new System.Drawing.Size(27, 23);
+            this.btnRefreshTenants.TabIndex = 15;
+            this.btnRefreshTenants.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRefreshTenants.UseVisualStyleBackColor = true;
+            this.btnRefreshTenants.Click += new System.EventHandler(this.btnRefreshTenants_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 381);
+            this.Controls.Add(this.btnRefreshTenants);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cbTenantList);
             this.Controls.Add(this.lblTenantName);
@@ -318,10 +332,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabTenantAccess.ResumeLayout(false);
             this.tabTenantAccess.PerformLayout();
-            this.tabConfig.ResumeLayout(false);
-            this.tabConfig.PerformLayout();
             this.tabCustomField.ResumeLayout(false);
             this.tabCustomField.PerformLayout();
+            this.tabConfig.ResumeLayout(false);
+            this.tabConfig.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,6 +369,7 @@
         private System.Windows.Forms.TextBox tbIPAddress;
         private System.Windows.Forms.Label lblIPAddress;
         private System.Windows.Forms.Button btnSaveInfo;
+        private System.Windows.Forms.Button btnRefreshTenants;
     }
 }
 

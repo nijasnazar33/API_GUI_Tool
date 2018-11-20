@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ namespace LeadSquaredAPITool
 {
 
 
-    class ReadFile
+    class APIAccess
     {
 
         static NameValueCollection short_code = new NameValueCollection();
@@ -58,6 +59,23 @@ namespace LeadSquaredAPITool
             func_out[0] = short_code;
             func_out[1] = rdUserName;
             return func_out;
+        }
+
+        static public string GetPublicIP()
+        {
+            String address = "";
+            WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
+            using (WebResponse response = request.GetResponse())
+            using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+            {
+                address = stream.ReadToEnd();
+            }
+
+            int first = address.IndexOf("Address: ") + 9;
+            int last = address.LastIndexOf("</body>");
+            address = address.Substring(first, last - first);
+
+            return address;
         }
     }
 }
