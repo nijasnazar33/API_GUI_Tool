@@ -31,6 +31,7 @@ namespace LeadSquaredAPITool
             tbReason.Text = "Report changes";
             //Fetching current public ipV4
             tbIPAddress.Text = APIAccess.GetPublicIP();
+            cbFieldAPIList.Text = "Dropdown values of lead field";
 
             if (File.Exists("config_file.txt"))
             {
