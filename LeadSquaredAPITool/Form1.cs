@@ -32,6 +32,7 @@ namespace LeadSquaredAPITool
             //Fetching current public ipV4
             tbIPAddress.Text = APIAccess.GetPublicIP();
             cbFieldAPIList.Text = "Dropdown values of lead field";
+            tbAPIActivity.Enabled = false;
 
             if (File.Exists("config_file.txt"))
             {
@@ -113,6 +114,52 @@ namespace LeadSquaredAPITool
             for (int i = 0; i < nmTenantData[0].Count; i++)
             {
                 cbTenantList.Items.Add(nmTenantData[0].GetKey(i).ToString());
+            }
+        }
+
+        private void cbFieldAPIList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbFieldAPIList.Text == "Dropdown values of lead field")
+            {
+                tbAPIField.Enabled = true;
+                tbAPIActivity.Enabled = false;
+            }
+            else if (cbFieldAPIList.Text == "Dropdown values of user field")
+            {
+                tbAPIField.Enabled = true;
+                tbAPIActivity.Enabled = false;
+            }
+            else if (cbFieldAPIList.Text == "Custom fields of activity")
+            {
+                tbAPIField.Enabled = false;
+                tbAPIActivity.Enabled = true;
+            }
+            else if (cbFieldAPIList.Text == "Dropdown values of activity field")
+            {
+                tbAPIField.Enabled = true;
+                tbAPIActivity.Enabled = true;
+            }
+        }
+
+        private void btnCallAPI_Click(object sender, EventArgs e)
+        {
+            if(tbAuthToken.Text == "")
+            {
+                NotifyForm frm = new NotifyForm("Please provide AuthToken", "Message");
+                frm.Show();
+            }
+            else
+            {
+                string apiResponse;
+                apiResponse = APIAccess.CallFieldAPI(cbFieldAPIList.Text, tbAPIField.ToString(), tbAPIActivity.ToString());
+                if(apiResponse != null)
+                {
+                    rtbAPIResult.Text = apiResponse;
+                }
+                else
+                {
+                    rtbAPIResult.Text = "Some error occured";
+                }
             }
         }
     }

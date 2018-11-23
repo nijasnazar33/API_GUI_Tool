@@ -43,6 +43,15 @@
             this.tbReason = new System.Windows.Forms.TextBox();
             this.lblReason = new System.Windows.Forms.Label();
             this.tabCustomField = new System.Windows.Forms.TabPage();
+            this.lblAPIResult = new System.Windows.Forms.Label();
+            this.rtbAPIResult = new System.Windows.Forms.RichTextBox();
+            this.btnCallAPI = new System.Windows.Forms.Button();
+            this.tbAPIActivity = new System.Windows.Forms.TextBox();
+            this.lblAPIActivity = new System.Windows.Forms.Label();
+            this.tbAPIField = new System.Windows.Forms.TextBox();
+            this.lblAPIField = new System.Windows.Forms.Label();
+            this.lblFieldAPI = new System.Windows.Forms.Label();
+            this.cbFieldAPIList = new System.Windows.Forms.ComboBox();
             this.lblAuthToken = new System.Windows.Forms.Label();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.btnSaveInfo = new System.Windows.Forms.Button();
@@ -55,15 +64,6 @@
             this.tbAccessKey = new System.Windows.Forms.TextBox();
             this.lblAccessKey = new System.Windows.Forms.Label();
             this.btnRefreshTenants = new System.Windows.Forms.Button();
-            this.cbFieldAPIList = new System.Windows.Forms.ComboBox();
-            this.lblFieldAPI = new System.Windows.Forms.Label();
-            this.lblAPIField = new System.Windows.Forms.Label();
-            this.tbAPIField = new System.Windows.Forms.TextBox();
-            this.lblAPIActivity = new System.Windows.Forms.Label();
-            this.tbAPIActivity = new System.Windows.Forms.TextBox();
-            this.btnCallAPI = new System.Windows.Forms.Button();
-            this.rtbAPIResult = new System.Windows.Forms.RichTextBox();
-            this.lblAPIResult = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabTenantAccess.SuspendLayout();
             this.tabCustomField.SuspendLayout();
@@ -206,7 +206,7 @@
             // 
             // tabCustomField
             // 
-            this.tabCustomField.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabCustomField.BackColor = System.Drawing.Color.Transparent;
             this.tabCustomField.Controls.Add(this.lblAPIResult);
             this.tabCustomField.Controls.Add(this.rtbAPIResult);
             this.tabCustomField.Controls.Add(this.btnCallAPI);
@@ -223,7 +223,92 @@
             this.tabCustomField.Size = new System.Drawing.Size(727, 245);
             this.tabCustomField.TabIndex = 2;
             this.tabCustomField.Text = "Custom Fields";
-            this.tabCustomField.UseVisualStyleBackColor = true;
+            // 
+            // lblAPIResult
+            // 
+            this.lblAPIResult.AutoSize = true;
+            this.lblAPIResult.Location = new System.Drawing.Point(343, 80);
+            this.lblAPIResult.Name = "lblAPIResult";
+            this.lblAPIResult.Size = new System.Drawing.Size(57, 13);
+            this.lblAPIResult.TabIndex = 12;
+            this.lblAPIResult.Text = "API Result";
+            // 
+            // rtbAPIResult
+            // 
+            this.rtbAPIResult.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.rtbAPIResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbAPIResult.Location = new System.Drawing.Point(343, 100);
+            this.rtbAPIResult.Name = "rtbAPIResult";
+            this.rtbAPIResult.ReadOnly = true;
+            this.rtbAPIResult.Size = new System.Drawing.Size(367, 129);
+            this.rtbAPIResult.TabIndex = 11;
+            this.rtbAPIResult.Text = "";
+            // 
+            // btnCallAPI
+            // 
+            this.btnCallAPI.Location = new System.Drawing.Point(100, 206);
+            this.btnCallAPI.Name = "btnCallAPI";
+            this.btnCallAPI.Size = new System.Drawing.Size(75, 23);
+            this.btnCallAPI.TabIndex = 10;
+            this.btnCallAPI.Text = "Call API";
+            this.btnCallAPI.UseVisualStyleBackColor = true;
+            this.btnCallAPI.Click += new System.EventHandler(this.btnCallAPI_Click);
+            // 
+            // tbAPIActivity
+            // 
+            this.tbAPIActivity.Location = new System.Drawing.Point(100, 165);
+            this.tbAPIActivity.Name = "tbAPIActivity";
+            this.tbAPIActivity.Size = new System.Drawing.Size(185, 20);
+            this.tbAPIActivity.TabIndex = 9;
+            // 
+            // lblAPIActivity
+            // 
+            this.lblAPIActivity.AutoSize = true;
+            this.lblAPIActivity.Location = new System.Drawing.Point(27, 168);
+            this.lblAPIActivity.Name = "lblAPIActivity";
+            this.lblAPIActivity.Size = new System.Drawing.Size(69, 13);
+            this.lblAPIActivity.TabIndex = 8;
+            this.lblAPIActivity.Text = "Activity Code";
+            // 
+            // tbAPIField
+            // 
+            this.tbAPIField.Location = new System.Drawing.Point(100, 127);
+            this.tbAPIField.Name = "tbAPIField";
+            this.tbAPIField.Size = new System.Drawing.Size(185, 20);
+            this.tbAPIField.TabIndex = 7;
+            // 
+            // lblAPIField
+            // 
+            this.lblAPIField.AutoSize = true;
+            this.lblAPIField.Location = new System.Drawing.Point(30, 130);
+            this.lblAPIField.Name = "lblAPIField";
+            this.lblAPIField.Size = new System.Drawing.Size(29, 13);
+            this.lblAPIField.TabIndex = 6;
+            this.lblAPIField.Text = "Field";
+            // 
+            // lblFieldAPI
+            // 
+            this.lblFieldAPI.AutoSize = true;
+            this.lblFieldAPI.Location = new System.Drawing.Point(27, 81);
+            this.lblFieldAPI.Name = "lblFieldAPI";
+            this.lblFieldAPI.Size = new System.Drawing.Size(57, 13);
+            this.lblFieldAPI.TabIndex = 5;
+            this.lblFieldAPI.Text = "Select API";
+            // 
+            // cbFieldAPIList
+            // 
+            this.cbFieldAPIList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFieldAPIList.FormattingEnabled = true;
+            this.cbFieldAPIList.Items.AddRange(new object[] {
+            "Dropdown values of lead field",
+            "Dropdown values of user field",
+            "Custom fields of activity",
+            "Dropdown values of activity field"});
+            this.cbFieldAPIList.Location = new System.Drawing.Point(100, 78);
+            this.cbFieldAPIList.Name = "cbFieldAPIList";
+            this.cbFieldAPIList.Size = new System.Drawing.Size(185, 21);
+            this.cbFieldAPIList.TabIndex = 4;
+            this.cbFieldAPIList.SelectedIndexChanged += new System.EventHandler(this.cbFieldAPIList_SelectedIndexChanged);
             // 
             // lblAuthToken
             // 
@@ -338,89 +423,6 @@
             this.btnRefreshTenants.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRefreshTenants.UseVisualStyleBackColor = true;
             this.btnRefreshTenants.Click += new System.EventHandler(this.btnRefreshTenants_Click);
-            // 
-            // cbFieldAPIList
-            // 
-            this.cbFieldAPIList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFieldAPIList.FormattingEnabled = true;
-            this.cbFieldAPIList.Items.AddRange(new object[] {
-            "Dropdown values of lead field",
-            "Dropdown values of user field",
-            "Custom fields of activity",
-            "Dropdown values of activity field "});
-            this.cbFieldAPIList.Location = new System.Drawing.Point(100, 78);
-            this.cbFieldAPIList.Name = "cbFieldAPIList";
-            this.cbFieldAPIList.Size = new System.Drawing.Size(185, 21);
-            this.cbFieldAPIList.TabIndex = 4;
-            // 
-            // lblFieldAPI
-            // 
-            this.lblFieldAPI.AutoSize = true;
-            this.lblFieldAPI.Location = new System.Drawing.Point(27, 81);
-            this.lblFieldAPI.Name = "lblFieldAPI";
-            this.lblFieldAPI.Size = new System.Drawing.Size(57, 13);
-            this.lblFieldAPI.TabIndex = 5;
-            this.lblFieldAPI.Text = "Select API";
-            // 
-            // lblAPIField
-            // 
-            this.lblAPIField.AutoSize = true;
-            this.lblAPIField.Location = new System.Drawing.Point(30, 130);
-            this.lblAPIField.Name = "lblAPIField";
-            this.lblAPIField.Size = new System.Drawing.Size(29, 13);
-            this.lblAPIField.TabIndex = 6;
-            this.lblAPIField.Text = "Field";
-            // 
-            // tbAPIField
-            // 
-            this.tbAPIField.Location = new System.Drawing.Point(100, 127);
-            this.tbAPIField.Name = "tbAPIField";
-            this.tbAPIField.Size = new System.Drawing.Size(185, 20);
-            this.tbAPIField.TabIndex = 7;
-            // 
-            // lblAPIActivity
-            // 
-            this.lblAPIActivity.AutoSize = true;
-            this.lblAPIActivity.Location = new System.Drawing.Point(27, 168);
-            this.lblAPIActivity.Name = "lblAPIActivity";
-            this.lblAPIActivity.Size = new System.Drawing.Size(69, 13);
-            this.lblAPIActivity.TabIndex = 8;
-            this.lblAPIActivity.Text = "Activity Code";
-            // 
-            // tbAPIActivity
-            // 
-            this.tbAPIActivity.Location = new System.Drawing.Point(100, 165);
-            this.tbAPIActivity.Name = "tbAPIActivity";
-            this.tbAPIActivity.Size = new System.Drawing.Size(185, 20);
-            this.tbAPIActivity.TabIndex = 9;
-            // 
-            // btnCallAPI
-            // 
-            this.btnCallAPI.Location = new System.Drawing.Point(100, 206);
-            this.btnCallAPI.Name = "btnCallAPI";
-            this.btnCallAPI.Size = new System.Drawing.Size(75, 23);
-            this.btnCallAPI.TabIndex = 10;
-            this.btnCallAPI.Text = "Call API";
-            this.btnCallAPI.UseVisualStyleBackColor = true;
-            // 
-            // rtbAPIResult
-            // 
-            this.rtbAPIResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbAPIResult.Location = new System.Drawing.Point(343, 100);
-            this.rtbAPIResult.Name = "rtbAPIResult";
-            this.rtbAPIResult.ReadOnly = true;
-            this.rtbAPIResult.Size = new System.Drawing.Size(367, 129);
-            this.rtbAPIResult.TabIndex = 11;
-            this.rtbAPIResult.Text = "";
-            // 
-            // lblAPIResult
-            // 
-            this.lblAPIResult.AutoSize = true;
-            this.lblAPIResult.Location = new System.Drawing.Point(343, 80);
-            this.lblAPIResult.Name = "lblAPIResult";
-            this.lblAPIResult.Size = new System.Drawing.Size(57, 13);
-            this.lblAPIResult.TabIndex = 12;
-            this.lblAPIResult.Text = "API Result";
             // 
             // Form1
             // 

@@ -77,5 +77,11 @@ namespace LeadSquaredAPITool
 
             return address;
         }
+
+        static public string CallFieldAPI(string apiMode, string leadField, string activityCode)
+        {
+            string apiResult = "hello";
+            return apiResult;
+        }
     }
 }
