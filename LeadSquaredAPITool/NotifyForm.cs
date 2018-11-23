@@ -12,11 +12,12 @@ namespace LeadSquaredAPITool
 {
     public partial class NotifyForm : Form
     {
-        public NotifyForm(string message, string title)
+        public NotifyForm(string message, string title, int leftPosition)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;// Or wherever 
 
+            lblMessage.Left = leftPosition;
             lblMessage.Text = "\r\n" + message;
             this.Text = title;
         }

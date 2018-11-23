@@ -227,7 +227,7 @@
             // lblAPIResult
             // 
             this.lblAPIResult.AutoSize = true;
-            this.lblAPIResult.Location = new System.Drawing.Point(343, 80);
+            this.lblAPIResult.Location = new System.Drawing.Point(312, 61);
             this.lblAPIResult.Name = "lblAPIResult";
             this.lblAPIResult.Size = new System.Drawing.Size(57, 13);
             this.lblAPIResult.TabIndex = 12;
@@ -237,10 +237,10 @@
             // 
             this.rtbAPIResult.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.rtbAPIResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbAPIResult.Location = new System.Drawing.Point(343, 100);
+            this.rtbAPIResult.Location = new System.Drawing.Point(311, 78);
             this.rtbAPIResult.Name = "rtbAPIResult";
             this.rtbAPIResult.ReadOnly = true;
-            this.rtbAPIResult.Size = new System.Drawing.Size(367, 129);
+            this.rtbAPIResult.Size = new System.Drawing.Size(399, 151);
             this.rtbAPIResult.TabIndex = 11;
             this.rtbAPIResult.Text = "";
             // 

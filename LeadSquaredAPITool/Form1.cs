@@ -16,18 +16,13 @@ namespace LeadSquaredAPITool
     public partial class Form1 : Form
     {
         private static NameValueCollection[] nmTenantData;
-        //private static string accessKey = "u$r77b4d1498ddd01a19b201291254a1365";
-        //private static string secretKey = "Mazhuvancherry@1";
-        //private static string ipAddress = "14.98.2.134";
-        private static string baseUrl = "https://devops-api.leadsquared.com:9002/api/tasks/async/MySQLAccess/GetTenantAccess";
-        private static NameValueCollection queryString;
         ToolTip toolTip1 = new ToolTip();
         //toolTip1.SetToolTip(this., "My checkBox1");
 
         public Form1()
         {
             InitializeComponent();
-            queryString =  new NameValueCollection();
+            //queryString =  new NameValueCollection();
             tbReason.Text = "Report changes";
             //Fetching current public ipV4
             tbIPAddress.Text = APIAccess.GetPublicIP();
@@ -62,32 +57,24 @@ namespace LeadSquaredAPITool
 
         private void btnGetAccess_Click(object sender, EventArgs e)
         {
-            queryString.Clear();
-            queryString.Add("accessKey", tbAccessKey.Text);
-            queryString.Add("secretKey", tbSecretKey.Text);
-            queryString.Add("shortCodes", tbShortCode.Text);
-            queryString.Add("ipAddress", tbIPAddress.Text);
-            queryString.Add("reason", tbReason.Text);
-            string full_url = baseUrl + ToQueryString(queryString);
-//            NotifyForm frm = new NotifyForm(full_url, "Debug");
-//            frm.Show();
+            string[] APIResponse = new string[2];
             Cursor.Current = Cursors.WaitCursor;
-            WebRequest request = HttpWebRequest.Create(full_url);
-            WebResponse response = request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
+            APIResponse = APIAccess.GetTenantAccess(tbAccessKey.Text.ToString(),
+                tbSecretKey.Text.ToString(),
+                tbShortCode.Text.ToString(),
+                tbIPAddress.Text.ToString(),
+                tbReason.Text.ToString());
             Cursor.Current = Cursors.Default;
-            tbURL.Text = full_url;
-            tbResponse.Text = reader.ReadToEnd();
-        }
-
-        static private string ToQueryString(NameValueCollection nvc)
-        {
-            var array = (from key in nvc.AllKeys
-                         from value in nvc.GetValues(key)
-                         select string.Format("{0}={1}", Uri.EscapeDataString(key), Uri.EscapeDataString(value)))
-                .ToArray();
-
-            return "?" + string.Join("&", array);
+            if (APIResponse[0] == "error")
+            {
+                NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 75);
+                frm.Show();
+            }
+            else
+            {
+                tbURL.Text = APIResponse[0];
+                tbResponse.Text = APIResponse[1];
+            }
         }
 
         private void btnSaveInfo_Click(object sender, EventArgs e)
@@ -102,7 +89,7 @@ namespace LeadSquaredAPITool
                 writer.WriteLine(tbReportLocation.Text);
             }
             Cursor.Current = Cursors.Default;
-            NotifyForm frm = new NotifyForm("Saved successfully", "Message");
+            NotifyForm frm = new NotifyForm("Saved successfully", "Message", 60);
             frm.Show();
         }
 
@@ -145,21 +132,34 @@ namespace LeadSquaredAPITool
         {
             if(tbAuthToken.Text == "")
             {
-                NotifyForm frm = new NotifyForm("Please provide AuthToken", "Message");
+                NotifyForm frm = new NotifyForm("Please provide AuthToken", "Message", 50);
                 frm.Show();
             }
             else
             {
-                string apiResponse;
-                apiResponse = APIAccess.CallFieldAPI(cbFieldAPIList.Text, tbAPIField.ToString(), tbAPIActivity.ToString());
-                if(apiResponse != null)
+                string[] APIResponse = new string[2];
+                Cursor.Current = Cursors.WaitCursor;
+                APIResponse = APIAccess.CallFieldAPI(tbAuthToken.Text.ToString(), cbFieldAPIList.Text.ToString(), 
+                    tbAPIField.Text.ToString(), tbAPIActivity.Text.ToString());
+                if (APIResponse[0] == "error")
                 {
-                    rtbAPIResult.Text = apiResponse;
+                    int errorPadding = 0;
+                    if(APIResponse[1] == "Input missing")
+                    {
+                        errorPadding = 75;
+                    }
+                    else if(APIResponse[1] == "Some Error Occured")
+                    {
+                        errorPadding = 50;
+                    }
+                    NotifyForm frm = new NotifyForm(APIResponse[1], "Message", errorPadding);
+                    frm.Show();
                 }
                 else
                 {
-                    rtbAPIResult.Text = "Some error occured";
+                    rtbAPIResult.Text = APIResponse[1];
                 }
+                Cursor.Current = Cursors.Default;
             }
         }
     }
