@@ -16,6 +16,7 @@ namespace LeadSquaredAPITool
     public partial class Form1 : Form
     {
         private static NameValueCollection[] nmTenantData;
+        private static string fieldAPIURL;
         ToolTip toolTip1 = new ToolTip();
         //toolTip1.SetToolTip(this., "My checkBox1");
 
@@ -36,6 +37,7 @@ namespace LeadSquaredAPITool
                 {
                     tbAccessKey.Text = reader.ReadLine();
                     tbSecretKey.Text = reader.ReadLine();
+                    tbEmailID.Text = reader.ReadLine();
                     tbReportLocation.Text = reader.ReadLine();
 
                 }
@@ -85,7 +87,7 @@ namespace LeadSquaredAPITool
             {
                 writer.WriteLine(tbAccessKey.Text);
                 writer.WriteLine(tbSecretKey.Text);
-                //writer.WriteLine(tbIPAddress.Text);
+                writer.WriteLine(tbEmailID.Text);
                 writer.WriteLine(tbReportLocation.Text);
             }
             Cursor.Current = Cursors.Default;
@@ -141,6 +143,7 @@ namespace LeadSquaredAPITool
                 Cursor.Current = Cursors.WaitCursor;
                 APIResponse = APIAccess.CallFieldAPI(tbAuthToken.Text.ToString(), cbFieldAPIList.Text.ToString(), 
                     tbAPIField.Text.ToString(), tbAPIActivity.Text.ToString());
+                Cursor.Current = Cursors.Default;
                 if (APIResponse[0] == "error")
                 {
                     int errorPadding = 0;
@@ -158,8 +161,49 @@ namespace LeadSquaredAPITool
                 else
                 {
                     rtbAPIResult.Text = APIResponse[1];
+                    fieldAPIURL = APIResponse[0];
                 }
+            }
+        }
+
+        private void btnViewAPIURL_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(fieldAPIURL);
+            NotifyForm frm = new NotifyForm("Copied API call to clipboard.", "Message", 40);
+            frm.Show();
+        }
+
+        private void btnRenewKey_Click(object sender, EventArgs e)
+        {
+            if(tbEmailID.Text == "")
+            {
+                NotifyForm frm = new NotifyForm("Please update registered Email address", "Message", 15);
+                frm.Show();
+            }
+            else if(tbSecretKey.Text == "")
+            {
+                NotifyForm frm = new NotifyForm("Please update Secret key", "Message", 45);
+                frm.Show();
+            }
+            else
+            {
+
+                //*********Need to add confirmation box here******************//
+                string[] APIResponse = new string[2];
+                Cursor.Current = Cursors.WaitCursor;
+                APIResponse = APIAccess.RenewAccessKey(tbSecretKey.Text.ToString(), tbEmailID.Text.ToString());
                 Cursor.Current = Cursors.Default;
+                if (APIResponse[0] == "error")
+                {
+                    NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 50);
+                    frm.Show();
+                }
+                else
+                {
+                    NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 50);
+                    frm.Show();
+                }
+
             }
         }
     }

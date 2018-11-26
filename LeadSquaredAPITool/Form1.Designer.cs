@@ -64,6 +64,10 @@
             this.tbAccessKey = new System.Windows.Forms.TextBox();
             this.lblAccessKey = new System.Windows.Forms.Label();
             this.btnRefreshTenants = new System.Windows.Forms.Button();
+            this.btnRenewKey = new System.Windows.Forms.Button();
+            this.btnViewAPIURL = new System.Windows.Forms.Button();
+            this.lblEmailID = new System.Windows.Forms.Label();
+            this.tbEmailID = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabTenantAccess.SuspendLayout();
             this.tabCustomField.SuspendLayout();
@@ -96,7 +100,7 @@
             // lblTenantName
             // 
             this.lblTenantName.AutoSize = true;
-            this.lblTenantName.Location = new System.Drawing.Point(43, 15);
+            this.lblTenantName.Location = new System.Drawing.Point(16, 21);
             this.lblTenantName.Name = "lblTenantName";
             this.lblTenantName.Size = new System.Drawing.Size(41, 13);
             this.lblTenantName.TabIndex = 4;
@@ -107,7 +111,7 @@
             this.cbTenantList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbTenantList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTenantList.FormattingEnabled = true;
-            this.cbTenantList.Location = new System.Drawing.Point(90, 12);
+            this.cbTenantList.Location = new System.Drawing.Point(63, 18);
             this.cbTenantList.Name = "cbTenantList";
             this.cbTenantList.Size = new System.Drawing.Size(121, 21);
             this.cbTenantList.TabIndex = 7;
@@ -138,7 +142,7 @@
             this.tbURL.Location = new System.Drawing.Point(24, 140);
             this.tbURL.Name = "tbURL";
             this.tbURL.ReadOnly = true;
-            this.tbURL.Size = new System.Drawing.Size(686, 20);
+            this.tbURL.Size = new System.Drawing.Size(645, 20);
             this.tbURL.TabIndex = 10;
             // 
             // lblResponse
@@ -155,7 +159,7 @@
             this.tbResponse.Location = new System.Drawing.Point(24, 198);
             this.tbResponse.Name = "tbResponse";
             this.tbResponse.ReadOnly = true;
-            this.tbResponse.Size = new System.Drawing.Size(686, 20);
+            this.tbResponse.Size = new System.Drawing.Size(645, 20);
             this.tbResponse.TabIndex = 12;
             // 
             // tabControl1
@@ -163,10 +167,10 @@
             this.tabControl1.Controls.Add(this.tabTenantAccess);
             this.tabControl1.Controls.Add(this.tabCustomField);
             this.tabControl1.Controls.Add(this.tabConfig);
-            this.tabControl1.Location = new System.Drawing.Point(9, 98);
+            this.tabControl1.Location = new System.Drawing.Point(9, 57);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(735, 271);
+            this.tabControl1.Size = new System.Drawing.Size(700, 294);
             this.tabControl1.TabIndex = 13;
             // 
             // tabTenantAccess
@@ -183,7 +187,7 @@
             this.tabTenantAccess.Location = new System.Drawing.Point(4, 22);
             this.tabTenantAccess.Name = "tabTenantAccess";
             this.tabTenantAccess.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTenantAccess.Size = new System.Drawing.Size(727, 245);
+            this.tabTenantAccess.Size = new System.Drawing.Size(692, 268);
             this.tabTenantAccess.TabIndex = 0;
             this.tabTenantAccess.Text = "Tenant Access";
             this.tabTenantAccess.UseVisualStyleBackColor = true;
@@ -207,6 +211,7 @@
             // tabCustomField
             // 
             this.tabCustomField.BackColor = System.Drawing.Color.Transparent;
+            this.tabCustomField.Controls.Add(this.btnViewAPIURL);
             this.tabCustomField.Controls.Add(this.lblAPIResult);
             this.tabCustomField.Controls.Add(this.rtbAPIResult);
             this.tabCustomField.Controls.Add(this.btnCallAPI);
@@ -220,7 +225,7 @@
             this.tabCustomField.Controls.Add(this.lblAuthToken);
             this.tabCustomField.Location = new System.Drawing.Point(4, 22);
             this.tabCustomField.Name = "tabCustomField";
-            this.tabCustomField.Size = new System.Drawing.Size(727, 245);
+            this.tabCustomField.Size = new System.Drawing.Size(692, 268);
             this.tabCustomField.TabIndex = 2;
             this.tabCustomField.Text = "Custom Fields";
             // 
@@ -240,13 +245,13 @@
             this.rtbAPIResult.Location = new System.Drawing.Point(311, 78);
             this.rtbAPIResult.Name = "rtbAPIResult";
             this.rtbAPIResult.ReadOnly = true;
-            this.rtbAPIResult.Size = new System.Drawing.Size(399, 151);
+            this.rtbAPIResult.Size = new System.Drawing.Size(368, 175);
             this.rtbAPIResult.TabIndex = 11;
             this.rtbAPIResult.Text = "";
             // 
             // btnCallAPI
             // 
-            this.btnCallAPI.Location = new System.Drawing.Point(100, 206);
+            this.btnCallAPI.Location = new System.Drawing.Point(111, 200);
             this.btnCallAPI.Name = "btnCallAPI";
             this.btnCallAPI.Size = new System.Drawing.Size(75, 23);
             this.btnCallAPI.TabIndex = 10;
@@ -256,7 +261,7 @@
             // 
             // tbAPIActivity
             // 
-            this.tbAPIActivity.Location = new System.Drawing.Point(100, 165);
+            this.tbAPIActivity.Location = new System.Drawing.Point(100, 161);
             this.tbAPIActivity.Name = "tbAPIActivity";
             this.tbAPIActivity.Size = new System.Drawing.Size(185, 20);
             this.tbAPIActivity.TabIndex = 9;
@@ -272,7 +277,7 @@
             // 
             // tbAPIField
             // 
-            this.tbAPIField.Location = new System.Drawing.Point(100, 127);
+            this.tbAPIField.Location = new System.Drawing.Point(100, 123);
             this.tbAPIField.Name = "tbAPIField";
             this.tbAPIField.Size = new System.Drawing.Size(185, 20);
             this.tbAPIField.TabIndex = 7;
@@ -304,7 +309,7 @@
             "Dropdown values of user field",
             "Custom fields of activity",
             "Dropdown values of activity field"});
-            this.cbFieldAPIList.Location = new System.Drawing.Point(100, 78);
+            this.cbFieldAPIList.Location = new System.Drawing.Point(100, 81);
             this.cbFieldAPIList.Name = "cbFieldAPIList";
             this.cbFieldAPIList.Size = new System.Drawing.Size(185, 21);
             this.cbFieldAPIList.TabIndex = 4;
@@ -321,6 +326,9 @@
             // 
             // tabConfig
             // 
+            this.tabConfig.Controls.Add(this.tbEmailID);
+            this.tabConfig.Controls.Add(this.lblEmailID);
+            this.tabConfig.Controls.Add(this.btnRenewKey);
             this.tabConfig.Controls.Add(this.btnSaveInfo);
             this.tabConfig.Controls.Add(this.tbReportLocation);
             this.tabConfig.Controls.Add(this.lblReportLocation);
@@ -333,14 +341,14 @@
             this.tabConfig.Location = new System.Drawing.Point(4, 22);
             this.tabConfig.Name = "tabConfig";
             this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfig.Size = new System.Drawing.Size(727, 245);
+            this.tabConfig.Size = new System.Drawing.Size(692, 268);
             this.tabConfig.TabIndex = 1;
             this.tabConfig.Text = "Configuration";
             this.tabConfig.UseVisualStyleBackColor = true;
             // 
             // btnSaveInfo
             // 
-            this.btnSaveInfo.Location = new System.Drawing.Point(158, 111);
+            this.btnSaveInfo.Location = new System.Drawing.Point(158, 137);
             this.btnSaveInfo.Name = "btnSaveInfo";
             this.btnSaveInfo.Size = new System.Drawing.Size(75, 23);
             this.btnSaveInfo.TabIndex = 8;
@@ -350,7 +358,7 @@
             // 
             // tbReportLocation
             // 
-            this.tbReportLocation.Location = new System.Drawing.Point(158, 79);
+            this.tbReportLocation.Location = new System.Drawing.Point(158, 105);
             this.tbReportLocation.Name = "tbReportLocation";
             this.tbReportLocation.Size = new System.Drawing.Size(305, 20);
             this.tbReportLocation.TabIndex = 7;
@@ -358,7 +366,7 @@
             // lblReportLocation
             // 
             this.lblReportLocation.AutoSize = true;
-            this.lblReportLocation.Location = new System.Drawing.Point(30, 86);
+            this.lblReportLocation.Location = new System.Drawing.Point(30, 112);
             this.lblReportLocation.Name = "lblReportLocation";
             this.lblReportLocation.Size = new System.Drawing.Size(124, 13);
             this.lblReportLocation.TabIndex = 6;
@@ -366,7 +374,7 @@
             // 
             // tbIPAddress
             // 
-            this.tbIPAddress.Location = new System.Drawing.Point(158, 184);
+            this.tbIPAddress.Location = new System.Drawing.Point(158, 176);
             this.tbIPAddress.Name = "tbIPAddress";
             this.tbIPAddress.Size = new System.Drawing.Size(305, 20);
             this.tbIPAddress.TabIndex = 5;
@@ -374,7 +382,7 @@
             // lblIPAddress
             // 
             this.lblIPAddress.AutoSize = true;
-            this.lblIPAddress.Location = new System.Drawing.Point(30, 191);
+            this.lblIPAddress.Location = new System.Drawing.Point(30, 183);
             this.lblIPAddress.Name = "lblIPAddress";
             this.lblIPAddress.Size = new System.Drawing.Size(58, 13);
             this.lblIPAddress.TabIndex = 4;
@@ -416,7 +424,7 @@
             // 
             this.btnRefreshTenants.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnRefreshTenants.Image = global::LeadSquaredAPITool.Properties.Resources.iconfinder_sync_126579_16x16;
-            this.btnRefreshTenants.Location = new System.Drawing.Point(221, 10);
+            this.btnRefreshTenants.Location = new System.Drawing.Point(194, 16);
             this.btnRefreshTenants.Name = "btnRefreshTenants";
             this.btnRefreshTenants.Size = new System.Drawing.Size(27, 23);
             this.btnRefreshTenants.TabIndex = 15;
@@ -424,11 +432,47 @@
             this.btnRefreshTenants.UseVisualStyleBackColor = true;
             this.btnRefreshTenants.Click += new System.EventHandler(this.btnRefreshTenants_Click);
             // 
+            // btnRenewKey
+            // 
+            this.btnRenewKey.Location = new System.Drawing.Point(469, 24);
+            this.btnRenewKey.Name = "btnRenewKey";
+            this.btnRenewKey.Size = new System.Drawing.Size(75, 23);
+            this.btnRenewKey.TabIndex = 9;
+            this.btnRenewKey.Text = "Renew Key";
+            this.btnRenewKey.UseVisualStyleBackColor = true;
+            this.btnRenewKey.Click += new System.EventHandler(this.btnRenewKey_Click);
+            // 
+            // btnViewAPIURL
+            // 
+            this.btnViewAPIURL.Location = new System.Drawing.Point(199, 200);
+            this.btnViewAPIURL.Name = "btnViewAPIURL";
+            this.btnViewAPIURL.Size = new System.Drawing.Size(75, 23);
+            this.btnViewAPIURL.TabIndex = 13;
+            this.btnViewAPIURL.Text = "Copy URL";
+            this.btnViewAPIURL.UseVisualStyleBackColor = true;
+            this.btnViewAPIURL.Click += new System.EventHandler(this.btnViewAPIURL_Click);
+            // 
+            // lblEmailID
+            // 
+            this.lblEmailID.AutoSize = true;
+            this.lblEmailID.Location = new System.Drawing.Point(30, 85);
+            this.lblEmailID.Name = "lblEmailID";
+            this.lblEmailID.Size = new System.Drawing.Size(99, 13);
+            this.lblEmailID.TabIndex = 10;
+            this.lblEmailID.Text = "LeadSquared Email";
+            // 
+            // tbEmailID
+            // 
+            this.tbEmailID.Location = new System.Drawing.Point(158, 78);
+            this.tbEmailID.Name = "tbEmailID";
+            this.tbEmailID.Size = new System.Drawing.Size(305, 20);
+            this.tbEmailID.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 381);
+            this.ClientSize = new System.Drawing.Size(711, 353);
             this.Controls.Add(this.btnRefreshTenants);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cbTenantList);
@@ -485,6 +529,10 @@
         private System.Windows.Forms.TextBox tbAPIField;
         private System.Windows.Forms.Label lblAPIField;
         private System.Windows.Forms.Label lblAPIResult;
+        private System.Windows.Forms.Button btnViewAPIURL;
+        private System.Windows.Forms.Button btnRenewKey;
+        private System.Windows.Forms.TextBox tbEmailID;
+        private System.Windows.Forms.Label lblEmailID;
     }
 }
 

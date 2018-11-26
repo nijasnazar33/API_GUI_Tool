@@ -24,6 +24,7 @@ namespace LeadSquaredAPITool
         private static string userFieldUrl = "https://reports.leadsquared.com/CommonServices/GetUserFieldDropdownValues.aspx";
         private static string activityUrl = "https://reports.leadsquared.com/CommonServices/GetCustomActivityFieldName.aspx";
         private static string activityFieldUrl = "https://reports.leadsquared.com/CommonServices/GetDropdownValuesOfActivityField.aspx";
+        private static string renewKeyUrl = "https://devops-api.leadsquared.com:9002/api/User/CreateAccessKeySecretKey";
 
 
         static public NameValueCollection[] ReadReportSetSessionFile(string reportLoction)
@@ -205,6 +206,30 @@ namespace LeadSquaredAPITool
                 }
             }
 
+
+            return APIResponse;
+        }
+
+        static public string[] RenewAccessKey(string secretKey, string emailID)
+        {
+            string[] APIResponse = new string[2];
+            queryString.Clear();
+            queryString.Add("emailId", emailID);
+            queryString.Add("secretKey", secretKey);
+            string full_url = renewKeyUrl + ToQueryString(queryString);
+            try
+            {
+                WebRequest request = HttpWebRequest.Create(full_url);
+                WebResponse response = request.GetResponse();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                APIResponse[0] = full_url;
+                APIResponse[1] = reader.ReadToEnd();
+            }
+            catch (Exception e)
+            {
+                APIResponse[0] = "error";
+                APIResponse[1] = "Some Error Occured";
+            }
 
             return APIResponse;
         }
