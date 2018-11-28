@@ -43,6 +43,7 @@
             this.tbReason = new System.Windows.Forms.TextBox();
             this.lblReason = new System.Windows.Forms.Label();
             this.tabCustomField = new System.Windows.Forms.TabPage();
+            this.btnViewAPIURL = new System.Windows.Forms.Button();
             this.lblAPIResult = new System.Windows.Forms.Label();
             this.rtbAPIResult = new System.Windows.Forms.RichTextBox();
             this.btnCallAPI = new System.Windows.Forms.Button();
@@ -54,6 +55,9 @@
             this.cbFieldAPIList = new System.Windows.Forms.ComboBox();
             this.lblAuthToken = new System.Windows.Forms.Label();
             this.tabConfig = new System.Windows.Forms.TabPage();
+            this.tbEmailID = new System.Windows.Forms.TextBox();
+            this.lblEmailID = new System.Windows.Forms.Label();
+            this.btnRenewKey = new System.Windows.Forms.Button();
             this.btnSaveInfo = new System.Windows.Forms.Button();
             this.tbReportLocation = new System.Windows.Forms.TextBox();
             this.lblReportLocation = new System.Windows.Forms.Label();
@@ -64,10 +68,6 @@
             this.tbAccessKey = new System.Windows.Forms.TextBox();
             this.lblAccessKey = new System.Windows.Forms.Label();
             this.btnRefreshTenants = new System.Windows.Forms.Button();
-            this.btnRenewKey = new System.Windows.Forms.Button();
-            this.btnViewAPIURL = new System.Windows.Forms.Button();
-            this.lblEmailID = new System.Windows.Forms.Label();
-            this.tbEmailID = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabTenantAccess.SuspendLayout();
             this.tabCustomField.SuspendLayout();
@@ -229,6 +229,16 @@
             this.tabCustomField.TabIndex = 2;
             this.tabCustomField.Text = "Custom Fields";
             // 
+            // btnViewAPIURL
+            // 
+            this.btnViewAPIURL.Location = new System.Drawing.Point(199, 200);
+            this.btnViewAPIURL.Name = "btnViewAPIURL";
+            this.btnViewAPIURL.Size = new System.Drawing.Size(75, 23);
+            this.btnViewAPIURL.TabIndex = 13;
+            this.btnViewAPIURL.Text = "Copy URL";
+            this.btnViewAPIURL.UseVisualStyleBackColor = true;
+            this.btnViewAPIURL.Click += new System.EventHandler(this.btnViewAPIURL_Click);
+            // 
             // lblAPIResult
             // 
             this.lblAPIResult.AutoSize = true;
@@ -346,6 +356,32 @@
             this.tabConfig.Text = "Configuration";
             this.tabConfig.UseVisualStyleBackColor = true;
             // 
+            // tbEmailID
+            // 
+            this.tbEmailID.Location = new System.Drawing.Point(158, 78);
+            this.tbEmailID.Name = "tbEmailID";
+            this.tbEmailID.Size = new System.Drawing.Size(305, 20);
+            this.tbEmailID.TabIndex = 11;
+            // 
+            // lblEmailID
+            // 
+            this.lblEmailID.AutoSize = true;
+            this.lblEmailID.Location = new System.Drawing.Point(30, 85);
+            this.lblEmailID.Name = "lblEmailID";
+            this.lblEmailID.Size = new System.Drawing.Size(99, 13);
+            this.lblEmailID.TabIndex = 10;
+            this.lblEmailID.Text = "LeadSquared Email";
+            // 
+            // btnRenewKey
+            // 
+            this.btnRenewKey.Location = new System.Drawing.Point(469, 24);
+            this.btnRenewKey.Name = "btnRenewKey";
+            this.btnRenewKey.Size = new System.Drawing.Size(75, 23);
+            this.btnRenewKey.TabIndex = 9;
+            this.btnRenewKey.Text = "Renew Key";
+            this.btnRenewKey.UseVisualStyleBackColor = true;
+            this.btnRenewKey.Click += new System.EventHandler(this.btnRenewKey_Click);
+            // 
             // btnSaveInfo
             // 
             this.btnSaveInfo.Location = new System.Drawing.Point(158, 137);
@@ -432,42 +468,6 @@
             this.btnRefreshTenants.UseVisualStyleBackColor = true;
             this.btnRefreshTenants.Click += new System.EventHandler(this.btnRefreshTenants_Click);
             // 
-            // btnRenewKey
-            // 
-            this.btnRenewKey.Location = new System.Drawing.Point(469, 24);
-            this.btnRenewKey.Name = "btnRenewKey";
-            this.btnRenewKey.Size = new System.Drawing.Size(75, 23);
-            this.btnRenewKey.TabIndex = 9;
-            this.btnRenewKey.Text = "Renew Key";
-            this.btnRenewKey.UseVisualStyleBackColor = true;
-            this.btnRenewKey.Click += new System.EventHandler(this.btnRenewKey_Click);
-            // 
-            // btnViewAPIURL
-            // 
-            this.btnViewAPIURL.Location = new System.Drawing.Point(199, 200);
-            this.btnViewAPIURL.Name = "btnViewAPIURL";
-            this.btnViewAPIURL.Size = new System.Drawing.Size(75, 23);
-            this.btnViewAPIURL.TabIndex = 13;
-            this.btnViewAPIURL.Text = "Copy URL";
-            this.btnViewAPIURL.UseVisualStyleBackColor = true;
-            this.btnViewAPIURL.Click += new System.EventHandler(this.btnViewAPIURL_Click);
-            // 
-            // lblEmailID
-            // 
-            this.lblEmailID.AutoSize = true;
-            this.lblEmailID.Location = new System.Drawing.Point(30, 85);
-            this.lblEmailID.Name = "lblEmailID";
-            this.lblEmailID.Size = new System.Drawing.Size(99, 13);
-            this.lblEmailID.TabIndex = 10;
-            this.lblEmailID.Text = "LeadSquared Email";
-            // 
-            // tbEmailID
-            // 
-            this.tbEmailID.Location = new System.Drawing.Point(158, 78);
-            this.tbEmailID.Name = "tbEmailID";
-            this.tbEmailID.Size = new System.Drawing.Size(305, 20);
-            this.tbEmailID.TabIndex = 11;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,7 +478,7 @@
             this.Controls.Add(this.cbTenantList);
             this.Controls.Add(this.lblTenantName);
             this.Name = "Form1";
-            this.Text = "LeadSquared API Tool";
+            this.Text = "LeadSquared API Tool (beta)";
             this.tabControl1.ResumeLayout(false);
             this.tabTenantAccess.ResumeLayout(false);
             this.tabTenantAccess.PerformLayout();

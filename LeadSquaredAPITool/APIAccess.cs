@@ -87,11 +87,20 @@ namespace LeadSquaredAPITool
                 queryString.Add("ipAddress", ipAddress);
                 queryString.Add("reason", reason);
                 string full_url = baseUrl + ToQueryString(queryString);
-                WebRequest request = HttpWebRequest.Create(full_url);
-                WebResponse response = request.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                APIResponse[0] = full_url;
-                APIResponse[1] = reader.ReadToEnd();
+                try
+                {
+                    WebRequest request = HttpWebRequest.Create(full_url);
+                    WebResponse response = request.GetResponse();
+                    StreamReader reader = new StreamReader(response.GetResponseStream());
+                    APIResponse[0] = full_url;
+                    APIResponse[1] = reader.ReadToEnd();
+                }
+                catch (Exception e)
+                {
+                    APIResponse[0] = "error";
+                    APIResponse[1] = "Some Error Occured";
+                }
+
             }
             return APIResponse;
         }

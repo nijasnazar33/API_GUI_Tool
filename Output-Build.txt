@@ -1,0 +1,6 @@
+﻿1>------ Build started: Project: LeadSquaredAPITool, Configuration: Debug Any CPU ------
+1>C:\Users\nijas\documents\visual studio 2015\Projects\LeadSquaredAPITool\LeadSquaredAPITool\Form1.cs(150,25,150,37): warning CS0219: The variable 'errorPadding' is assigned but its value is never used
+1>C:\Users\nijas\documents\visual studio 2015\Projects\LeadSquaredAPITool\LeadSquaredAPITool\APIAccess.cs(201,34,201,35): warning CS0168: The variable 'e' is declared but never used
+1>C:\Users\nijas\documents\visual studio 2015\Projects\LeadSquaredAPITool\LeadSquaredAPITool\APIAccess.cs(233,30,233,31): warning CS0168: The variable 'e' is declared but never used
+1>  LeadSquaredAPITool -> C:\Users\nijas\documents\visual studio 2015\Projects\LeadSquaredAPITool\LeadSquaredAPITool\bin\Debug\LeadSquaredAPITool.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

@@ -32,15 +32,17 @@ namespace LeadSquaredAPITool
             Cursor.Current = Cursors.Default;
             if (APIResponse[0] == "error")
             {
-                NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 50);
+                NotifyForm frm = new NotifyForm(APIResponse[1], "Message");
                 frm.Show();
             }
             else
             {
-                NotifyForm frm = new NotifyForm("Requested successfully. Please check your inbox", "Message", 50);
+                NotifyForm frm = new NotifyForm("Success! Check your mail.", "Message");
                 frm.Show();
             }
-
+            //NotifyForm frm = new NotifyForm("Success! Check your mail.", "Message");
+            //frm.Show();
+            this.Close();
         }
 
         private void btnRenewAccessKeyNo_Click(object sender, EventArgs e)

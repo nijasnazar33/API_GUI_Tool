@@ -70,7 +70,7 @@ namespace LeadSquaredAPITool
             Cursor.Current = Cursors.Default;
             if (APIResponse[0] == "error")
             {
-                NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 75);
+                NotifyForm frm = new NotifyForm(APIResponse[1], "Message");
                 frm.Show();
             }
             else
@@ -92,7 +92,7 @@ namespace LeadSquaredAPITool
                 writer.WriteLine(tbReportLocation.Text);
             }
             Cursor.Current = Cursors.Default;
-            NotifyForm frm = new NotifyForm("Saved successfully", "Message", 60);
+            NotifyForm frm = new NotifyForm("Saved successfully", "Message");
             frm.Show();
         }
 
@@ -135,7 +135,7 @@ namespace LeadSquaredAPITool
         {
             if(tbAuthToken.Text == "")
             {
-                NotifyForm frm = new NotifyForm("Please provide AuthToken", "Message", 50);
+                NotifyForm frm = new NotifyForm("Please provide AuthToken", "Message");
                 frm.Show();
             }
             else
@@ -147,16 +147,7 @@ namespace LeadSquaredAPITool
                 Cursor.Current = Cursors.Default;
                 if (APIResponse[0] == "error")
                 {
-                    int errorPadding = 0;
-                    if(APIResponse[1] == "Input missing")
-                    {
-                        errorPadding = 75;
-                    }
-                    else if(APIResponse[1] == "Some Error Occured")
-                    {
-                        errorPadding = 50;
-                    }
-                    NotifyForm frm = new NotifyForm(APIResponse[1], "Message", errorPadding);
+                    NotifyForm frm = new NotifyForm(APIResponse[1], "Message");
                     frm.Show();
                 }
                 else
@@ -169,45 +160,36 @@ namespace LeadSquaredAPITool
 
         private void btnViewAPIURL_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(fieldAPIURL);
-            NotifyForm frm = new NotifyForm("Copied API call to clipboard.", "Message", 40);
-            frm.Show();
+            if (fieldAPIURL == null)
+            {
+                NotifyForm frm = new NotifyForm("No API Called.", "Message");
+                frm.Show();
+
+            }
+            else
+            {
+                Clipboard.SetText(fieldAPIURL);
+                NotifyForm frm = new NotifyForm("Copied API call to clipboard.", "Message");
+                frm.Show();
+            }
         }
 
         private void btnRenewKey_Click(object sender, EventArgs e)
         {
             if(tbEmailID.Text == "")
             {
-                NotifyForm frm = new NotifyForm("Please update registered Email address", "Message", 15);
+                NotifyForm frm = new NotifyForm("Please update registered Email address", "Message");
                 frm.Show();
             }
             else if(tbSecretKey.Text == "")
             {
-                NotifyForm frm = new NotifyForm("Please update Secret key", "Message", 45);
+                NotifyForm frm = new NotifyForm("Please update Secret key", "Message");
                 frm.Show();
             }
             else
             {
                 ConfirmationForm cnf = new ConfirmationForm(tbSecretKey.Text.ToString(), tbEmailID.Text.ToString());
                 cnf.Show();
-                //*********Need to add confirmation box here******************//
-                /*
-                string[] APIResponse = new string[2];
-                Cursor.Current = Cursors.WaitCursor;
-                APIResponse = APIAccess.RenewAccessKey(tbSecretKey.Text.ToString(), tbEmailID.Text.ToString());
-                Cursor.Current = Cursors.Default;
-                if (APIResponse[0] == "error")
-                {
-                    NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 50);
-                    frm.Show();
-                }
-                else
-                {
-                    NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 50);
-                    frm.Show();
-                }
-                */
-
             }
         }
     }
