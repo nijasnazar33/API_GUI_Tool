@@ -23,6 +23,7 @@ namespace LeadSquaredAPITool
         public Form1()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             //queryString =  new NameValueCollection();
             tbReason.Text = "Report changes";
             //Fetching current public ipV4
@@ -187,8 +188,10 @@ namespace LeadSquaredAPITool
             }
             else
             {
-
+                ConfirmationForm cnf = new ConfirmationForm(tbSecretKey.Text.ToString(), tbEmailID.Text.ToString());
+                cnf.Show();
                 //*********Need to add confirmation box here******************//
+                /*
                 string[] APIResponse = new string[2];
                 Cursor.Current = Cursors.WaitCursor;
                 APIResponse = APIAccess.RenewAccessKey(tbSecretKey.Text.ToString(), tbEmailID.Text.ToString());
@@ -203,6 +206,7 @@ namespace LeadSquaredAPITool
                     NotifyForm frm = new NotifyForm(APIResponse[1], "Message", 50);
                     frm.Show();
                 }
+                */
 
             }
         }

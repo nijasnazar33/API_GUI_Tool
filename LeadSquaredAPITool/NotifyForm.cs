@@ -15,7 +15,7 @@ namespace LeadSquaredAPITool
         public NotifyForm(string message, string title, int leftPosition)
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;// Or wherever 
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             lblMessage.Left = leftPosition;
             lblMessage.Text = "\r\n" + message;

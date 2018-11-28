@@ -224,6 +224,11 @@ namespace LeadSquaredAPITool
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 APIResponse[0] = full_url;
                 APIResponse[1] = reader.ReadToEnd();
+                if(APIResponse[1].Contains("Error") == true)
+                {
+                    APIResponse[0] = "error";
+                    APIResponse[1] = "Inalid inputs";
+                }
             }
             catch (Exception e)
             {
